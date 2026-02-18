@@ -10,7 +10,7 @@
   pre_tasks:
     - name: Load user variable overrides
       ansible.builtin.include_vars:
-        file: "{{ playbook_dir }}/../../../../vars/user.yml"
+        file: "{{ playbook_dir }}/../../../../../vars/user.yml"
       when: lookup('ansible.builtin.fileglob', playbook_dir + '/../../../../../vars/user.yml') | length > 0
 
   roles:
