@@ -11,14 +11,17 @@ GH_USER="maodevops"
 : "${SETUP_PLAYBOOK:=${GH_USER}.mac.setup_mac.yml}"
 
 # BEGIN: Logging vars and functions
-declare -A LOG_LEVELS=([DEBUG]=0 [INFO]=1 [WARN]=2 [ERROR]=3 [FATAL]=4 [OFF]=5)
-declare -A LOG_COLORS=([DEBUG]=2 [INFO]=12 [WARN]=3 [ERROR]=1 [FATAL]=9 [OFF]=0 [OTHER]=15 [MESSAGE]=118)
+_LOG_LEVEL_DEBUG=0  _LOG_LEVEL_INFO=1   _LOG_LEVEL_WARN=2  _LOG_LEVEL_ERROR=3  _LOG_LEVEL_FATAL=4  _LOG_LEVEL_OFF=5
+_LOG_COLOR_DEBUG=2  _LOG_COLOR_INFO=12  _LOG_COLOR_WARN=3  _LOG_COLOR_ERROR=1  _LOG_COLOR_FATAL=9  _LOG_COLOR_OFF=0  _LOG_COLOR_OTHER=15  _LOG_COLOR_MESSAGE=118
 
 export LOG_LEVEL="DEBUG"
 
+log.level_value() { eval "echo \$_LOG_LEVEL_$1"; }
+log.color_value()  { eval "echo \$_LOG_COLOR_$1"; }
+
 log.msg() {
   local msg="$1"
-  local lvl="${2:-${LOG_COLORS['MESSAGE']}}"
+  local lvl="${2:-$(log.color_value MESSAGE)}"
   [[ -t 1 ]] && tput setaf $lvl
   echo -e "${msg}" 1>&2
   [[ -t 1 ]] && tput sgr0
@@ -27,10 +30,10 @@ log.msg() {
 log.log() {
   local lvl=${1:-INFO}
   local msg="$2"
-  if [[ ${LOG_LEVELS[$LOG_LEVEL]} -le ${LOG_LEVELS[$lvl]} ]]; then
-    [[ -t 1 ]] && tput setaf ${LOG_COLORS[$lvl]}
+  if [[ $(log.level_value "$LOG_LEVEL") -le $(log.level_value "$lvl") ]]; then
+    [[ -t 1 ]] && tput setaf $(log.color_value "$lvl")
     printf "[%-5s] " "${lvl}" 1>&2
-    log.msg "${msg}" "${lvl}"
+    log.msg "${msg}" "$(log.color_value "$lvl")"
     [[ -t 1 ]] && tput sgr0
   fi
 }
@@ -76,7 +79,8 @@ fi
 prompt_to_continue() {
   echo "This script will install Homebrew, uv, Python, Ansible, and run an Ansible playbook to set up your macOS system."
   while true; do
-    read -r -p "Continue? (y/n): " answer < /dev/tty
+    printf "Continue? (y/n): " > /dev/tty
+    read -r answer < /dev/tty
     case "$answer" in
       [Yy] ) 
         echo "Continuing..."
