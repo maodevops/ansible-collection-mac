@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 vars/user.yml
 .DS_Store
+.myenvrc
