@@ -1,19 +1,18 @@
 ---
-- name: Setup Mac workstation
+- name: Setup Mac
   hosts: localhost
   connection: local
   gather_facts: true
 
   vars_files:
-    - "{{ playbook_dir }}/../../../../vars/base.yml"
+    - "{{ playbook_dir }}/../../../../../vars/base.yml"
 
   pre_tasks:
     - name: Load user variable overrides
       ansible.builtin.include_vars:
         file: "{{ playbook_dir }}/../../../../vars/user.yml"
-      when: lookup('ansible.builtin.fileglob', playbook_dir + '/../../../../vars/user.yml') | length > 0
+      when: lookup('ansible.builtin.fileglob', playbook_dir + '/../../../../../vars/user.yml') | length > 0
 
   roles:
     - role: maodevops.mac.brew
-
     - role: maodevops.mac.git
