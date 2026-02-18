@@ -1,12 +1,12 @@
 ---
 - name: Write global gitignore file
   ansible.builtin.copy:
-    dest: "{{ ansible_env['HOME'] }}/.gitignore_global"
+    dest: "{{ ansible_facts['HOME'] }}/.gitignore_global"
     content: "{{ git_global_ignore | join('\n') }}\n"
     mode: "0644"
 
 - name: Set git global core.excludesFile
   community.general.git_config:
     name: core.excludesFile
-    value: "{{ ansible_env['HOME'] }}/.gitignore_global"
+    value: "{{ ansible_facts['HOME'] }}/.gitignore_global"
     scope: global
