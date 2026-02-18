@@ -1,0 +1,24 @@
+---
+- name: Check if iTerm2 settings have already been imported
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['user_dir'] }}/.config/iterm2/.ansible-imported"
+  register: iterm2_imported
+
+- name: Copy iTerm2 export file
+  ansible.builtin.copy:
+    src: .config/iterm2/iTerm2.itermexport
+    dest: "{{ ansible_facts['user_dir'] }}/.config/iterm2/iTerm2.itermexport"
+    mode: "0644"
+  when: not iterm2_imported.stat.exists
+
+- name: Import iTerm2 settings
+  ansible.builtin.command:
+    cmd: open -a iTerm2 "{{ ansible_facts['user_dir'] }}/.config/iterm2/iTerm2.itermexport"
+  when: not iterm2_imported.stat.exists
+
+- name: Mark iTerm2 settings as imported
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/iterm2/.ansible-imported"
+    state: touch
+    mode: "0644"
+  when: not iterm2_imported.stat.exists

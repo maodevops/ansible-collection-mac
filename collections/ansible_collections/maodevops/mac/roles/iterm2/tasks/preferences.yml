@@ -1,0 +1,16 @@
+---
+- name: Set iTerm2 custom preferences directory
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: PrefsCustomFolder
+    type: string
+    value: "{{ iterm2_prefs_dir }}"
+  when: iterm2_prefs_dir | length > 0
+
+- name: Enable loading preferences from custom folder
+  community.general.osx_defaults:
+    domain: com.googlecode.iterm2
+    key: LoadPrefsFromCustomFolder
+    type: bool
+    value: true
+  when: iterm2_prefs_dir | length > 0

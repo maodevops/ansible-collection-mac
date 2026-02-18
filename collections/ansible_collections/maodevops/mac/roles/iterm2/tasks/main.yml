@@ -1,0 +1,12 @@
+---
+- name: Install iTerm2
+  ansible.builtin.import_tasks: install.yml
+  tags: iterm2-install
+
+- name: Import iTerm2 settings
+  ansible.builtin.import_tasks: import.yml
+  tags: iterm2-import
+
+- name: Configure iTerm2 preferences
+  ansible.builtin.import_tasks: preferences.yml
+  tags: iterm2-preferences
