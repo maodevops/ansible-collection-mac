@@ -191,6 +191,7 @@ clone_repo() {
     log.info "Repository already cloned at ${CLONE_DIR}"
     git -C "${CLONE_DIR}" fetch origin "${REPO_BRANCH}" || true
     git -C "${CLONE_DIR}" checkout "${REPO_BRANCH}" || true
+    git -C "${CLONE_DIR}" pull origin "${REPO_BRANCH}" || true
   else
     log.info "Cloning repository from ${REPO_URL} to ${CLONE_DIR}..."
     git clone -b "${REPO_BRANCH}" "${REPO_URL}" "${CLONE_DIR}"
