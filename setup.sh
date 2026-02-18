@@ -106,7 +106,7 @@ check_vars() {
   local var_name
 
   for var_name in "${required_vars[@]}"; do
-    if [[ -z "${!var_name:-}" ]]; then
+    if [[ -z "$(eval "echo \${${var_name}:-}")" ]]; then
       missing_vars+=("${var_name}")
     fi
   done
