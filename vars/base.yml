@@ -3,16 +3,34 @@ brew_packages_base:
   - bash
   - coreutils
   - curl
+  - direnv
+  - findutils
+  - gawk
   - git
+  - gnu-sed
+  - gnu-tar
+  - gnu-which
+  - go
+  - grep
   - jq
+  - ncdu
+  - node
+  - openssl@3
+  - parallel
   - ripgrep
+  - starship
+  - terraform
   - tcptraceroute
   - telnet
+  - tree
+  - unzip
+  - vim
+  - watch
   - wget
   - yamllint
   - yq
 
-# brew_casks_base:
-
-git_user_name: ""
-git_user_email: ""
+brew_casks_base:
+  - firefox
+  - google-chrome
+  - iterm2

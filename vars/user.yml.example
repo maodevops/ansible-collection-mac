@@ -3,11 +3,11 @@
 # vars/user.yml is gitignored so your personal settings won't be committed.
 
 # Add extra Homebrew packages on top of the team baseline:
-brew_packages_extra:
-  - ncdu
+brew_packages_extra: []
 
 # Add extra Homebrew casks:
-brew_casks_extra: []
+brew_casks_extra:
+  - obsidian
 
 # Add extra global gitignore patterns:
 git_global_ignore_extra: []
