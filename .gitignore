@@ -1,0 +1,5 @@
+*.retry
+.venv/
+__pycache__/
+*.pyc
+vars/user.yml
