@@ -1,0 +1,7 @@
+---
+git_user_name: ""
+git_user_email: ""
+
+git_global_ignore_base: []
+git_global_ignore_extra: []
+git_global_ignore: "{{ git_global_ignore_base + git_global_ignore_extra }}"

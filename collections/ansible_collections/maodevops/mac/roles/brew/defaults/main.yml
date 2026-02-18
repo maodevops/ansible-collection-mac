@@ -1,0 +1,8 @@
+---
+brew_packages_base: []
+brew_packages_extra: []
+brew_packages: "{{ brew_packages_base + brew_packages_extra }}"
+
+brew_casks_base: []
+brew_casks_extra: []
+brew_casks: "{{ brew_casks_base + brew_casks_extra }}"

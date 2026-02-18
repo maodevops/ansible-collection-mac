@@ -1,0 +1,8 @@
+---
+- name: Install Homebrew packages
+  ansible.builtin.import_tasks: packages.yml
+  tags: brew-packages
+
+- name: Install Homebrew casks
+  ansible.builtin.import_tasks: casks.yml
+  tags: brew-casks

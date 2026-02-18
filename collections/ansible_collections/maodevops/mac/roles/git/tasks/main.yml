@@ -1,0 +1,8 @@
+---
+- name: Configure git user settings
+  ansible.builtin.import_tasks: config.yml
+  tags: git-config
+
+- name: Configure global gitignore
+  ansible.builtin.import_tasks: ignore.yml
+  tags: git-ignore

@@ -1,0 +1,12 @@
+namespace: maodevops
+name: mac
+version: 0.1.0
+readme: null
+description: Ansible collection for setting up and configuring a Mac workstation.
+authors:
+  - mao
+license:
+  - GPL-2.0-or-later
+repository: ""
+dependencies:
+  community.general: ">=8.0.0"

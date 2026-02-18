@@ -1,0 +1,17 @@
+---
+# Copy this file to vars/user.yml and customize.
+# vars/user.yml is gitignored so your personal settings won't be committed.
+
+# Add extra Homebrew packages on top of the team baseline:
+brew_packages_extra:
+  - ncdu
+
+# Add extra Homebrew casks:
+brew_casks_extra: []
+
+# Add extra global gitignore patterns:
+git_global_ignore_extra: []
+
+# Set your git identity:
+git_user_name: "Your Name"
+git_user_email: "you@example.com"
