@@ -16,3 +16,4 @@
   roles:
     - role: maodevops.mac.brew
     - role: maodevops.mac.git
+    - role: maodevops.mac.iterm2

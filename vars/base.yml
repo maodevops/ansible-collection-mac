@@ -33,4 +33,3 @@ brew_packages_base:
 brew_casks_base:
   - firefox
   - google-chrome
-  - iterm2
