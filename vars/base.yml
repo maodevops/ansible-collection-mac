@@ -14,14 +14,5 @@ brew_packages_base:
 
 # brew_casks_base:
 
-git_global_ignore_base:
-  - .DS_Store
-  - .AppleDouble
-  - .LSOverride
-  - ._*
-  - Icon\r
-  - .Spotlight-V100
-  - .Trashes
-
 git_user_name: ""
 git_user_email: ""
