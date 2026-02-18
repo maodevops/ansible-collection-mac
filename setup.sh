@@ -6,6 +6,7 @@ set -eo pipefail
 GH_USER="maodevops"
 
 : "${REPO_URL:="https://github.com/${GH_USER}/ansible-collection-mac.git"}"
+: "${REPO_BRANCH:=main}"
 : "${CLONE_DIR:="${HOME}/code/github.com/${GH_USER}/ansible-collection-mac"}"
 : "${VENV_DIR:="${HOME}/.venvs/ansible-latest"}"
 : "${SETUP_PLAYBOOK:=${GH_USER}.mac.setup_mac.yml}"
@@ -188,10 +189,11 @@ clone_repo() {
 
   if [[ -d "${CLONE_DIR}/.git" ]]; then
     log.info "Repository already cloned at ${CLONE_DIR}"
-    git -C "${CLONE_DIR}" pull --ff-only || true
+    git -C "${CLONE_DIR}" fetch origin "${REPO_BRANCH}" || true
+    git -C "${CLONE_DIR}" checkout "${REPO_BRANCH}" || true
   else
     log.info "Cloning repository from ${REPO_URL} to ${CLONE_DIR}..."
-    git clone "${REPO_URL}" "${CLONE_DIR}"
+    git clone -b "${REPO_BRANCH}" "${REPO_URL}" "${CLONE_DIR}"
   fi
 }
 
